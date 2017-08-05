@@ -113,7 +113,7 @@ try:
                         print("="*100)
                 print("*"*100)
 
-except KeyboardInterrupt:
+except (KeyboardInterrupt, EOFError) as e:
     print()
     pass #exit
 except:
