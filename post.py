@@ -49,6 +49,7 @@ try:
         print("2. 택배사 추천")
         print("3. 운송장 조회")
         print("4. 자동 조회")
+        print("5. 리스트 조회")
         print("선택 : ", end="")
         try:
             choice = int(input())
@@ -88,7 +89,29 @@ try:
                 t_info(t_search(code["Code"], t_invoice))
                 print("="*100)
 
-
+        elif choice == 5:
+            with open("invoices.txt", "r") as f: # set your own invoice here
+                rows = f.read().split("\n")
+            for row in rows:
+                if not row:
+                    continue
+                print("*"*100)
+                row = row.split(",")
+                t_invoice = row[0]
+                t_code = row[1]
+                if t_code:
+                    t_info(t_search(t_code, t_invoice))
+                else:
+                    data = t_recommend(t_invoice)
+                    codes = []
+                    for company in data["Recommend"]:
+                        codes.append(company)
+                    for code in codes:
+                        print("="*100)
+                        print("조회 : %s" % (code["Name"]))
+                        t_info(t_search(code["Code"], t_invoice))
+                        print("="*100)
+                print("*"*100)
 
 except KeyboardInterrupt:
     print()

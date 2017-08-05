@@ -104,3 +104,4 @@ ENV/
 # End of https://www.gitignore.io/api/python
 
 my_api_key.py
+invoices.txt
