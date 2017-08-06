@@ -93,7 +93,7 @@ try:
             with open("invoices.txt", "r") as f: # set your own invoice here
                 rows = f.read().split("\n")
             for row in rows:
-                if not row:
+                if not row or row[0] == "#":
                     continue
                 print("*"*100)
                 row = row.split(",")
